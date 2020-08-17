@@ -1,0 +1,30 @@
+CREATE TABLE tbSystem(
+    idSystem serial NOT NULL PRIMARY KEY UNIQUE,
+    SystemName VARCHAR(50) UNIQUE,
+    Mnemonic VARCHAR(5) UNIQUE
+);
+
+CREATE TABLE  tbRule(
+    idRule serial NOT NULL PRIMARY KEY UNIQUE, 
+    RuleName VARCHAR(50) UNIQUE, 
+    idSystem INT NOT NULL, 
+    FOREIGN KEY(idSystem) REFERENCES tbSystem (idSystem) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE tbLogin(
+    idLogin serial PRIMARY KEY UNIQUE,
+    Login VARCHAR(30) UNIQUE,
+    Password VARCHAR(512),
+    Nome VARCHAR(80),
+    Email VARCHAR(100)
+);
+
+CREATE TABLE tbLoginRules(
+    id serial PRIMARY KEY UNIQUE,
+    idRule INT NOT NULL,
+    idLogin BIGINT NOT NULL,
+    FOREIGN KEY(idRule) REFERENCES tbRule(idRule) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(idLogin) REFERENCES tbLogin(idLogin) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+

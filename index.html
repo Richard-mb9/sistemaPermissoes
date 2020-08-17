@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="src/static/config.js"></script>
+    <script src="src/static/js/index.js"></script>
+    <script src="src/static/js/btns.js"></script>
+    
+    <link rel="stylesheet" href="src/static/css/index.css">
+    <title>index</title>
+    
+</head>
+<body>
+    <div class="div-conteudo">
+        <div class="div-formulario">
+            <div id="topo"></div>
+            <div class="div-pesquisa">
+                <input type="text" hidden id="idlogin">
+                <input type="text" id="input-pesquisa" placeholder="Login">
+                <button class="btn-pesquisar" onclick="pesquisarLogin()">&#128269;</button>
+            </div>
+            <li id="info">selecione um Login</li>
+            <ul class="lista-usuarios"></ul>
+            <select id="sistemas" on="getSystems()" onchange="listRulesSystems(this.value)">
+                <option value="" disabled selected>Sistema</option>
+            </select>
+            
+            <p class="p-titulo">Lista de Permissões</p>
+            <ul class="lista-permissoes"></ul>
+
+            <div class="div-btns">
+                <button onclick="alterarTodas(true)" class="btn-op">Marcar todas</button>
+                <button onclick="alterarTodas(false)" class="btn-op">Inverter</button>
+                <button onclick="salvar()" class="btn-op">Salvar</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+    //faz a solicitação para a api dos itens necessarios para a pagina
+    window.onload = () =>{
+        //esconde a linha de alerta para selecionar um usuario
+        idLogin = document.getElementById('info').style.display  = "none"
+        
+        const select = document.querySelector("#sistemas")
+        let url = baseUrl + "systems/"
+
+        addEventListener("",event =>{
+            event.preventDefault();
+        })
+
+        fetch(url,{
+            method:'GET'
+        }).then(response => response.json())
+        .then(response =>{
+            for(let i = 0; i < response.length; i++){
+                let option = document.createElement("option")
+                option.innerHTML= response[i]['systemname']
+                option.value = response[i]['idsystem'] 
+                select.appendChild(option)
+            }
+        })
+    }
+
+</script>

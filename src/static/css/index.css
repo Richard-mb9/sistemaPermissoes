@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    --cor-principal:#555555;
+}
+
+
+body{
+    background-color: #dddddd;
+}
+
+.div-conteudo{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.div-formulario{
+    background-color: #ffffff;
+    padding: 0px 10px;
+    width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#topo{
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    height: 20px;
+    background-color: var(--cor-principal);
+}
+.div-pesquisa{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 2px var(--cor-principal);
+    height: 30px;
+    line-height: 30px;
+}
+#input-pesquisa{
+    width: 355px;
+    font-size: 15px;
+    vertical-align: middle;
+    padding-left: 5px;
+    border:none;
+    outline: none;
+}
+
+.btn-pesquisar{
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+.btn-pesquisar:hover{
+    background-color: #dddddd;
+}
+
+#info{
+    color: red;
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
+    list-style: none;
+}
+
+.usuario{
+    list-style: none;
+    padding: 0px 5px;
+    height: 20px;
+    padding: 5px 5px;
+    width: 100%;
+    cursor: pointer;
+
+}
+.usuario:hover{
+    color: white;
+    background-color: #555555;
+}
+#sistemas{
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    border: solid 2px var(--cor-principal);
+}
+
+.p-titulo{
+    margin-top: 10px;
+    width: calc(100% - 10px);
+    padding: 7px 5px;
+    background-color: var(--cor-principal);
+    color: white;
+}
+
+.lista-permissoes{
+    margin-top: 10px;
+    border: solid 2px var(--cor-principal);
+}
+
+.lista-permissoes-item{
+    list-style: none;
+    border-bottom:  solid 2px var(--cor-principal);
+    padding: 5px 5px;
+    font-size: 15px;
+    
+}
+.lista-permissoes-item input{
+    margin-right: 15px;
+    height: 25px;
+    width: 20px;
+    vertical-align: middle;
+}
+
+.lista-permissoes-item input:enabled{
+    background-color: var(--cor-principal);
+}
+.div-btns{
+    margin-top: 10px;
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.btn-op{
+    background-color: var(--cor-principal);
+    color: white;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    margin: 10px 5px;
+    cursor: pointer;
+}
+

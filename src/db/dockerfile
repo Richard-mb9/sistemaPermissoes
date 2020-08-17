@@ -1,0 +1,17 @@
+FROM postgres:alpine
+
+WORKDIR /usr/app/db
+
+ENV POSTGRES_PASSWORD "richard"
+ENV POSTGRES_DB "db_mer"
+
+EXPOSE 5432
+
+
+COPY DDL.sql /docker-entrypoint-initdb.d/
+COPY DML.sql /docker-entrypoint-initdb.d/
+
+
+
+
+
