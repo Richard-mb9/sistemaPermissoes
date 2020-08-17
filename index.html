@@ -52,6 +52,8 @@
             event.preventDefault();
         })
 
+
+        //carrega os sistemas disponiveis, e adiciona ao select de sistemas
         fetch(url,{
             method:'GET'
         }).then(response => response.json())

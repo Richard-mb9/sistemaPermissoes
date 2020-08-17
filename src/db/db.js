@@ -1,4 +1,6 @@
 const {Client} = require("pg");
+
+//conexão com o banco de dados
 const db = new Client({
     host:"192.168.99.100",
     port:5432,

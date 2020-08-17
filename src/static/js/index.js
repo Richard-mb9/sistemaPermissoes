@@ -4,21 +4,24 @@
  */
 function listRulesSystems(id){
     const url = baseUrl + "systems/" + id;
-    let itemsListaAntiga = document.querySelector(".lista-permissoes-item")
-    function getRules(){
-        itemsListaAntiga = document.querySelector(".lista-permissoes-item")
-    }
+    
+
     addEventListener("",event =>{
         event.preventDefault();
     })
 
+    //consulta na api todas as permissões do sistema selecionado
     fetch(url,{method:'GET'}).then(response => response.json())
     .then(response =>{
+        
+        //apaga a antiga lista de permissões
+        let itemsListaAntiga = document.querySelector(".lista-permissoes-item")
+        while(itemsListaAntiga != null){
+            itemsListaAntiga.remove()
+            itemsListaAntiga = document.querySelector(".lista-permissoes-item")
+        }
+
         const lista = document.querySelector(".lista-permissoes")
-         while(itemsListaAntiga != null){
-             itemsListaAntiga.remove()
-             getRules()
-         }
 
         //cria cada permissão da lista de permissões do sistema
         for(let i = 0; i < response.length; i++){
@@ -37,10 +40,14 @@ function listRulesSystems(id){
         }
     })
 
+
+    /**
+     * caso tenha algum login selecionado, efetua uma busca na api 
+     * para ver quais permissões este login possui no sistema informado
+     */
     let idlogin = document.getElementById('idlogin')
     if(idlogin.value != ""){
         getPermissions(id,idlogin.value)
-        
     }
 }
 
@@ -50,6 +57,7 @@ function pesquisarLogin(){
     let pesquisa = document.getElementById("input-pesquisa").value
     const url = baseUrl + "login/?search=" + pesquisa;
     let itens = document.querySelector(".usuario")
+    //let itens = document.getElementsByClassName("usuario")
     addEventListener("",event =>{
         event.preventDefault();
     })
@@ -60,14 +68,19 @@ function pesquisarLogin(){
         //remove a lista da antiga pesquisa
         while(itens != null){
             itens.remove()
-            getLogins()
+            itens = document.querySelector(".usuario")
         }
+        
+
+        //cria uma lista com todos os logins encontrados referentes a pesquisa
         const lista = document.querySelector(".lista-usuarios")
         for(let i = 0; i < response.length; i++){
             let li = document.createElement("li")
             let span = document.createElement("span")
             li.className = "usuario"
             span.innerHTML = response[i]['nome']
+
+            //campo em que indica oque acontecera quando o login for selecionado
             li.onclick = ()=> {
                 document.getElementById("input-pesquisa").value = response[i]['nome']
                 let sistema = document.getElementById("sistemas")
@@ -75,6 +88,9 @@ function pesquisarLogin(){
                 //esconde a linha de alerta para selecionar um usuario
                 info = document.getElementById('info').style.display  = "none"
 
+
+                /*Caso possua algum sistema selecinaodo, é feita uma busca para 
+                ver quais permissões o login selecionado possui neste respectivo sistema */
                 if(sistema.value != ""){
                     getPermissions(
                         sistema.value,
@@ -87,10 +103,6 @@ function pesquisarLogin(){
 
         }
     })
-    function getLogins (){
-        itens = document.querySelector(".usuario")
-        
-    }
 
     /*limpa o campo de pesquisa e outros campos devido 
     ha não haver nehum login selecionado*/

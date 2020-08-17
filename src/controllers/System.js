@@ -16,6 +16,7 @@ router.get('/systems', async(req,res) =>{
 })
 
 
+//retorna um jsson com todos as permissões do sistema informado no idsystem
 router.get('/systems/:idsystem', async(req,res) =>{
     const idsystem = req.params.idsystem
     try{
@@ -23,7 +24,7 @@ router.get('/systems/:idsystem', async(req,res) =>{
         return res.send(rules)
     }
     catch(err){
-        return res.status(400).send(err)
+        return res.status(400).send({err:"houve um erro na consulta dos dados"})
     }
 })
 

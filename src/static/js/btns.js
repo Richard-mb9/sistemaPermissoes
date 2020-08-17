@@ -4,9 +4,13 @@
  * basta enviar o estado desejado, true, ou false
  */
 function alterarTodas(state){
+
+    //checks são todos os inputs checkbox das permissões
     let checks = document.getElementsByClassName("check-permission")
     let idlogin = document.getElementById('idlogin')
     
+
+    //altera o stado de todos os checkbos para o estado da variavale state
     if(checks != null && idlogin.value != ""){
         for(let i = 0; i < checks.length; i++){
             checks[i].checked = state
@@ -17,6 +21,7 @@ function alterarTodas(state){
 
 
 //função responsvel por salvar as permissões dos logins
+//primeiro ela apaga todas as permissões atuais, e depois salva todas as novas permissões
 function salvar(){
     let checks = document.getElementsByClassName("check-permission")
     let idlogin = document.getElementById('idlogin').value
@@ -54,7 +59,7 @@ function salvar(){
                         alert("Dados Alterados com sucesso")
                     }
                     else{
-                        alert("houve um proble com os dados e não foram salvos")
+                        alert("houve um proble com os dados, eles não foram salvos")
                     }
 
                 })
